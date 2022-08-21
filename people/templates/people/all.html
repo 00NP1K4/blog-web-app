@@ -1,0 +1,461 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>The People's View - All Post</title>
+        <meta name="description" content="{{ post.content|safe|slice:200 }}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="{% static '' %}images/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="{% static '' %}images/favicon.ico" type="image/x-icon" />
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet" />
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{% static '' %}css/assets/bootstrap.min.css" />
+
+        <!-- Fontawesome Icon -->
+        <link rel="stylesheet" href="{% static '' %}css/assets/font-awesome.min.css" />
+
+        <!-- Animate Css -->
+        <link rel="stylesheet" href="{% static '' %}css/assets/animate.css" />
+
+        <!-- Owl Slider -->
+        <link rel="stylesheet" href="{% static '' %}css/assets/owl.carousel.min.css" />
+
+        <!-- Magnific PopUp -->
+        <link rel="stylesheet" href="{% static '' %}css/assets/magnific-popup.css" />
+
+        <!-- Custom Style -->
+        <link rel="stylesheet" href="{% static '' %}css/assets/normalize.css" />
+        <link rel="stylesheet" href="{% static '' %}css/style.css" />
+        <link rel="stylesheet" href="{% static '' %}css/assets/responsive.css" />
+
+        <style>
+            .responsive {
+                width: 260px;
+                height: 169px;
+            }
+            .logoone {
+                width: 219px;
+                height: 70px;
+            }
+            .logotwo {
+                width: 220px;
+                height: 56px;
+            }
+            .logotwo {
+                width: 220px;
+                height: 56px;
+            }
+            .siden {
+                width: 100px;
+                height: 81px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Logo Area -->
+        <section class="logo-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="logo">
+                            <a href="#"><img src="{% static '' %}images/logoo.jpg" alt="" class="logoone img-fluid" /></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="searchbar text-right">
+                            <form action="#">
+                                <input placeholder="Search Here..." type="text" required />
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Logo Area -->
+
+        <!-- Menu Area -->
+        <section class="menu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="main-menu">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item"><a href="{% url 'index' %}">HOME</a></li>
+                                <li class="list-inline-item"><a href="{% url 'all' %}">ALL NEWS</a></li>
+                                <li class="list-inline-item"><a>CATEGORY <i class="fa fa-angle-down"></i></a>
+                                    <ul class="dropdown list-unstyled">
+                                        {% for category in categories %}
+                                        <li><a href="{% url 'category' category.id %}">{{ category.category|upper }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                                <li class="list-inline-item"><a href="{% url 'about' %}">ABOUT</a></li>
+                                <li class="list-inline-item"><a href="{% url 'contact' %}">CONTACT</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="clock text-right">
+                            <span id="dg-clock"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Menu Area -->
+
+        <!-- Mobile Menu -->
+        <section class="mobile-menu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mobile-menu">
+                            <nav id="dropdown">
+                                <a href="#"><img class="logotwo" src="{% static '' %}images/logoo.jpg" alt="" /></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="{% url 'index' %}">Home</a></li>
+                                    <li><a href="{% url 'all' %}">All News</a></li>
+                                    <li>
+                                        <a>Category</a>
+                                        <ul class="list-unstyled">
+                                            {% for category in categories %}
+                                            <li><a href="{% url 'category' category.id %}">{{ category.category }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li><a href="{% url 'about' %}">About</a></li>
+                                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Mobile Menu -->
+
+        <!-- Breadcrumb Area -->
+        <section class="breadcrumb-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="breadcrumb-box">
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item"><a href="#">Home</a> <i class="fa fa-angle-right"></i></li>
+                                <li class="list-inline-item">All News</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Breadcrumb Area -->
+
+        <!-- Category Area -->
+        <section class="category1-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-12">
+                        <div class="row">
+                            {% for post in page_obj %}{% if post.status == "Publish" %}
+                            <div class="col-md-12">
+                                <div class="category-box2 d-flex">
+                                    <div class="cat-img">
+                                        <a href="#"><img class="responsive" src="{{ post.preview.url }}" alt="" /></a>
+                                    </div>
+                                    <div class="img-content">
+                                        <h6><a href="{% url 'post_detail' post.slug %}">{{ post.title|capfirst }}</a></h6>
+                                        <ul class="list-unstyled list-inline tag-dat">
+                                            <li class="list-inline-item">{{ post.category }}</li>
+                                            <li class="list-inline-item">{{ post.created_on|date:"D d M Y" }}</li>
+                                        </ul>
+                                        <p>{{ post.content|safe|slice:200 }}.......</p>
+                                        <ul class="list-unstyled list-inline red-com">
+                                            <li class="list-inline-item">
+                                                <a href="{% url 'post_detail' post.slug %}">Read More <i class="fa fa-angle-right"></i></a>
+                                            </li>
+<!--                                            <li class="list-inline-item">-->
+<!--                                                <a href="#"><i class="fa fa-commenting-o"></i> (09)</a>-->
+<!--                                            </li>-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}{% endfor %}
+                            <div class="col-md-12">
+                                {% if page_obj.has_other_pages %}
+                                <div class="pagination-box">
+                                    <ul class="list-unstyled list-inline">
+                                        {% if page_obj.has_previous %}
+                                          <li class="list-inline-item"><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                                        {% else %}
+                                        <li class="list-inline-item disabled"><i class="fa fa-angle-left"></i></li>
+                                        {% endif %}
+                                        {% for i in page_obj.paginator.page_range %}
+                                          {% if page_obj.number == i %}
+                                            <li class="list-inline-item active"><a href="#">{{ i }} </a></li>
+                                          {% else %}
+                                            <li class="list-inline-item"><a href="?page={{ i }}">{{ i }}</a></li>
+                                          {% endif %}
+                                        {% endfor %}
+                                        {% if page_obj.has_next %}
+                                          <li class="list-inline-item"><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                                        {% else %}
+                                          <li class="list-inline-item disabled"><i class="fa fa-angle-right"></i></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="follow-widget">
+                                    <div class="sec-title">
+                                        <h5>Follow Us</h5>
+                                    </div>
+                                    <ul class="list-unstyled clearfix">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-facebook"></i>
+                                                <p>44,410</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                                <p>31,219</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-rss"></i>
+                                                <p>11,209</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-linkedin"></i>
+                                                <p>19,323</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-google-plus"></i>
+                                                <p>29,559</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-youtube"></i>
+                                                <p>56,717</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+<!--                            <div class="col-md-12">-->
+<!--                                <div class="add-widget">-->
+<!--                                    <img src="{% static '' %}images/add1.jpg" alt="" class="img-fluid" />-->
+<!--                                    <div class="add-layer text-center">-->
+<!--                                        <p>Best Template For Your Online News</p>-->
+<!--                                        <a href="#">Buy Now</a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="col-md-12">
+                                <div class="mv-widget">
+                                    <div class="sec-title">
+                                        <h5>Recent News</h5>
+                                    </div>
+                                    <div class="mv-slider owl-carousel">
+                                        <div class="mv-item">
+                                            {% for post in latest_posts %}
+                                            {% if post.status == "Publish" %}
+                                            <div class="mv-box d-flex">
+                                                <div class="mv-img">
+                                                    <a href="{% url 'post_detail' post.slug %}"><img class="siden" src="{{ post.preview.url }}" alt="" /></a>
+                                                </div>
+                                                <div class="img-content">
+                                                    <p><a href="{% url 'post_detail' post.slug %}">{{ post.title|capfirst }}</a></p>
+                                                    <ul class="list-unstyled list-inline">
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-0">
+                                <div class="app-widget">
+                                    <img src="{% static '' %}images/news-app.jpg" alt="" class="img-fluid app-img" />
+                                    <div class="img-content">
+                                        <h4>Stay Connected</h4>
+                                        <p>Download our app and get latest news and updates. Watch live news anytime.</p>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="#"><img src="{% static '' %}images/app1.png" alt="" /></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><img src="{% static '' %}images/app2.png" alt="" /></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Category Area -->
+
+        <!-- Footer Area -->
+        <footer class="footer-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="f-about">
+                            <img class="logotwo" src="{% static '' %}images/logoo.jpg" alt="" />
+                            <ul class="list-unstyled f-contact">
+                                <li><i class="fa fa-envelope"></i>{{ adm.email }}</li>
+                                <li><i class="fa fa-phone"></i>+{{ adm.phone_number }}</li>
+                            </ul>
+                            <ul class="list-unstyled list-inline f-social">
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="fa fa-rss"></i></a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#"><i class="fa fa-youtube"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="f-service">
+                            <div class="sec-title">
+                                <h5>Services</h5>
+                            </div>
+                            <ul class="list-unstyled service-list">
+                                {% for category in categories %}
+                                <li>
+                                    <a href="{% url 'category' category.id %}"><i class="fa fa-angle-right"></i>{{ category.category }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="f-post">
+                            <div class="sec-title">
+                                <h5>Latest Post</h5>
+                            </div>
+                            {% for post in latest_posts|slice:":4" %}
+                            {% if post.status == "Publish" %}
+                            <div class="post-box d-flex">
+                                <div class="post-con">
+                                    <p><a href="{% url 'post_detail' post.slug %}">{{ post.title|capfirst }}</a></p>
+                                    <span>{{ post.created_on|date:"D d M Y" }}</span>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="f-newsltr">
+                            <div class="sec-title">
+                                <h5>Newsletter</h5>
+                            </div>
+                            <form class="news-letter" action="#">
+                                <input type="text" name="name" value="" placeholder="Your name" />
+                                <input type="text" name="email" value="" placeholder="Your email address" />
+                                <button type="button" name="button">Register</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <section class="footer-btm">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2022 | Designed With <i class="fa fa-heart"></i> by <a href="#" target="_blank">SnazzyTheme</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="back-to-top text-center">
+                <a data-scroll href="#btt"><i class="fa fa-angle-up"></i></a>
+            </div>
+        </section>
+        <!-- End Footer Area -->
+
+        <!-- =========================================
+        JavaScript Files
+        ========================================== -->
+
+        <!-- jQuery JS -->
+        <script src="{% static '' %}js/assets/vendor/jquery-1.12.4.min.js"></script>
+
+        <!-- Bootstrap -->
+        <script src="{% static '' %}js/assets/popper.min.js"></script>
+        <script src="{% static '' %}js/assets/bootstrap.min.js"></script>
+
+        <!-- Owl Slider -->
+        <script src="{% static '' %}js/assets/owl.carousel.min.js"></script>
+
+        <!-- News Ticker -->
+        <script src="{% static '' %}js/assets/jquery.newsticker.min.js"></script>
+
+        <!-- Magnific PopUp -->
+        <script src="{% static '' %}js/assets/magnific-popup.min.js"></script>
+
+        <!-- Smooth Scroll -->
+        <script src="{% static '' %}js/assets/smooth-scroll.js"></script>
+
+        <!-- Mean Menu -->
+        <script src="{% static '' %}js/assets/jquery.meanmenu.min.js"></script>
+
+        <!-- Wow Animation -->
+        <script src="{% static '' %}js/assets/wow.min.js"></script>
+
+        <!-- Custom JS -->
+        <script src="{% static '' %}js/plugins.js"></script>
+        <script src="{% static '' %}js/custom.js"></script>
+    </body>
+
+</html>
